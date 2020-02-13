@@ -10,8 +10,8 @@ module.exports = {
     {
       resolve: "gatsby-source-shopify",
       options: {
-        shopName: "YOUR_SHOPNAME",
-        accessToken: "YOUR_TOKEN",
+        shopName: "plant-dyed-goods",
+        accessToken: "a6e72da3a1161d69e5f460ad84c0638a",
         verbose: true,
         paginationSize: 30,
       },
