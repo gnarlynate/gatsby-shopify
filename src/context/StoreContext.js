@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react'
+import React, {createContext, useState, useEffect} from 'react'
 import Client from 'shopify-buy'
 
 const client = Client.buildClient({
@@ -16,15 +16,40 @@ const defaultValues = {
 export const StoreContext = createContext(defaultValues)
 
 export const StoreProvider = ({children}) => {
+  const [checkout, setCheckout] = useState({})
+
+  useEffect(()=>{
+    initalizeCheckout()
+  }, [])
+
+  const initalizeCheckout = async () => {
+    try {
+      const isBrowser = typeof window != 'undefined'
+      const currentCheckoutId = isBrowser 
+        ? localStorage.getItem("checkout_id") 
+        : null
+      let newCheckout = null
+      if (currentCheckoutId) {
+        newCheckout = await client.checkout.fetch(currentCheckoutId)
+      }else {
+        newCheckout = await client.checkout.create()
+        if(isBrowser){
+          localStorage.setItem("checkout_id", newCheckout.id)
+        }
+      }
+      setCheckout(newCheckout)
+    }catch(e) {
+      console.log(e)
+    }
+  }
   const addProductToCart = async (variantId) => {
     try {
-      const newCheckout = await client.checkout.create()
       const lineItems = [{
         variantId,
         quantity: 1
       }]
       const addItems = await client.checkout.addLineItems(
-        newCheckout.id,
+        checkout.id,
         lineItems
       )
       console.log(addItems.webUrl)
