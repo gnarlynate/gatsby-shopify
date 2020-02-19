@@ -4,6 +4,7 @@ import React, {useContext} from "react"
 import { FaShoppingCart } from "react-icons/fa"
 import "../style.scss"
 import {StoreContext} from "../context/StoreContext"
+import Cart from "./Cart/Cart"
 import logo from "../images/logo.svg"
 
 const Header = ({ siteTitle }) => {
@@ -27,6 +28,7 @@ return(
         <FaShoppingCart onClick={addProductToCart}style={{ color: "white", height: 30, width: 30 }} />
       </div>
     </div>
+    <Cart />
   </header>
 )
 }
