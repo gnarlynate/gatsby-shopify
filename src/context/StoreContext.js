@@ -8,6 +8,7 @@ const client = Client.buildClient({
 
 const defaultValues = {
   isCartOpen: false,
+  toggleCartOpen: () => {},
   cart: [],
   addProductToCart: () => {},
   client,
@@ -20,6 +21,11 @@ export const StoreContext = createContext(defaultValues)
 
 export const StoreProvider = ({children}) => {
   const [checkout, setCheckout] = useState(defaultValues.checkout)
+  const [isCartOpen, setCartOpen] = useState(false)
+
+  const toggleCartOpen = () => {
+    setCartOpen(!isCartOpen)
+  }
 
   useEffect(()=>{
     initalizeCheckout()
@@ -51,11 +57,11 @@ export const StoreProvider = ({children}) => {
         variantId,
         quantity: 1
       }]
-      const newCheckout = await client.checkout.addLineItems(
+      const newItems = await client.checkout.addLineItems(
         checkout.id,
         lineItems
       )
-      setCheckout(newCheckout)
+      setCheckout(newItems)
       // console.log(addItems.webUrl)
       // Buy button functionality
       // window.open(addItems.webUrl, "_blank")
@@ -68,7 +74,9 @@ export const StoreProvider = ({children}) => {
     <StoreContext.Provider value={{
       ...defaultValues,
       checkout,
-      addProductToCart
+      addProductToCart,
+      toggleCartOpen,
+      isCartOpen
     }}>
       {children}
     </StoreContext.Provider>
