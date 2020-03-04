@@ -10,7 +10,7 @@ const Cart = ({style}) => {
         position: "fixed",
         top: 0,
         right: 0,
-        width: "50%",
+        width: "40%",
         height: "100%",
         padding: 40,
         background: "white",
@@ -28,12 +28,32 @@ const Cart = ({style}) => {
         className='delete is-large' onClick={toggleCartOpen}>Close Cart</button>
       <h3 className='title'>Cart</h3>
       {checkout.lineItems.map(item => (
-        <div key={item.id}>
+        <div key={item.id} style={{paddingBottom: 20}}>
+          <img src={item.variant.image.src}
+               style={{
+                 height: '10%',
+                 width: '10%',
+                 float: 'left'
+               }}
+          />
+          <button className='is-danger button is-small is-outlined'
+                  style={{
+                    float: 'right'
+                  }}
+          >
+            Remove</button>
           <h4 className='title is-4'>{item.title}</h4>
           <p className='subtitle is-5'>$ {item.variant.price}</p>
           <p className='subtitle is-5'>Qty: {item.quantity}</p>
+
         </div>
       ))}
+        <hr style={{
+           backgroundColor: 'grey',
+           height: 5,
+           margin: '1rem 0'
+         }}></hr>
+      <h5 className='title'>Total: ${checkout.totalPrice}</h5>
     </animated.div>
   )
 }
