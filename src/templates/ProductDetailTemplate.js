@@ -19,7 +19,8 @@ const ProductDetailTemplate = ({ data }) => {
         <div className="column">
           <h1 className="title">{product.title}</h1>
           <p className="subtitle is-4">${firstVariant.price}</p>
-          <AddToCart />
+          <p style={{paddingBottom: 10}}>{product.description}</p>
+          <AddToCart variantId={firstVariant.shopifyId}/>
         </div>
       </div>
     </Layout>
@@ -34,9 +35,11 @@ export const query = graphql`
       id
       handle
       title
+      description
       productType
       variants {
         id
+        shopifyId
         title
         price
         sku

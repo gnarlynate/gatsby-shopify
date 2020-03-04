@@ -24,3 +24,4 @@ const ProductsListingItem = ({ product }) => {
 }
 
 export default ProductsListingItem
+
