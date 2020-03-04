@@ -6,7 +6,7 @@ import { FaShoppingCart } from "react-icons/fa"
 import "../style.scss"
 import {StoreContext} from "../context/StoreContext"
 import Cart from "./Cart/Cart"
-import logo from "../images/logo.svg"
+import logo from "../images/gatsby-icon.png"
 
 const Header = ({ siteTitle }) => {
   const {isCartOpen, toggleCartOpen, checkout} = useContext(StoreContext)
