@@ -50,6 +50,11 @@ const Cart = ({style}) => {
            margin: '1rem 0'
          }}></hr>
       <h5 className='title'>Total: ${checkout.totalPrice}</h5>
+      <div>
+        <a href={checkout.webUrl} className="button is-fullwidth is-success">
+          Checkout
+        </a>
+      </div>
     </animated.div>
   )
 }
