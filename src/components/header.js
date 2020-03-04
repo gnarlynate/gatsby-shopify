@@ -9,12 +9,15 @@ import Cart from "./Cart/Cart"
 import logo from "../images/logo.svg"
 
 const Header = ({ siteTitle }) => {
-  const {isCartOpen, addProductToCart, client, toggleCartOpen} = useContext(StoreContext)
+  const {isCartOpen, toggleCartOpen, checkout} = useContext(StoreContext)
   const transitions = useTransition(isCartOpen, null, {
     from: {transform: 'translate3d(100%, 0, 0)'},
     enter: {transform: 'translate3d(0, 0, 0)'},
     leave: {transform: 'translate3d(100%, 0, 0)'}
   })
+  const qty = checkout.lineItems.reduce((total, item) => {
+    return total + item.quantity
+  }, 0)
 return(
   <header
     className="level is-mobile"
@@ -33,9 +36,25 @@ return(
       <div className="navbar-item">
         <button 
           className="button"
-          style={{background:'transparent', border: 'none'}}
+          style={{position: 'relative', background:'transparent', border: 'none'}}
           onClick={toggleCartOpen}
         >
+          {qty > 0 && (
+          <div style={{
+            color: 'white',
+            background: 'var(--red)',
+            position: 'absolute',
+            borderRadius: 15,
+            textAlign: 'center',
+            height: 30,
+            width: 30,
+            top: -5,
+            left: -5,
+            lineHeight: '30px'
+          }}>
+            {qty}
+          </div>
+          )}
           <FaShoppingCart style={{ color: "white", height: 30, width: 30 }} />
         </button>  
       </div>
