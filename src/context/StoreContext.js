@@ -2,8 +2,8 @@ import React, {createContext, useState, useEffect} from 'react'
 import Client from 'shopify-buy'
 
 const client = Client.buildClient({
-  domain: "plant-dyed-goods.myshopify.com",
-  storefrontAccessToken: "a6e72da3a1161d69e5f460ad84c0638a"
+  domain: "bowes-guitars.myshopify.com",
+  storefrontAccessToken: "8b3837aa3c4790fdf98db74a3c1c6cf7"
 })
 
 const defaultValues = {

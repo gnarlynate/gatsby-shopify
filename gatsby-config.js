@@ -10,8 +10,8 @@ module.exports = {
     {
       resolve: "gatsby-source-shopify",
       options: {
-        shopName: "plant-dyed-goods",
-        accessToken: "a6e72da3a1161d69e5f460ad84c0638a",
+        shopName: "bowes-guitars",
+        accessToken: "8b3837aa3c4790fdf98db74a3c1c6cf7",
         verbose: true,
         paginationSize: 30,
       },
