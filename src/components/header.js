@@ -30,6 +30,7 @@ return(
           src={logo}
           alt="Level Up Logo"
         />
+        <h1 className='title'style={{color: 'white'}}> Bowes Guitars</h1>
       </Link>
     </div>
     <div className="level-right">
